@@ -12,7 +12,7 @@
   --font:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
 }
 body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidden;height:100vh;display:flex;align-items:center;justify-content:center;}
-.phone-shell{width:390px;height:100vh;max-height:844px;background:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18);border-radius:0;}
+.phone-shell{width:390px;height:100vh;max-height:844px;background:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.18);}
 .screen{display:none;flex-direction:column;height:100%;overflow:hidden;animation:fadeIn .22s ease;}
 .screen.active{display:flex;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -41,8 +41,7 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
 .user-bubble{background:var(--lgray);border-radius:18px 18px 4px 18px;padding:14px 16px;margin:0 16px 4px;font-size:15px;line-height:1.6;}
 .user-label{font-size:11px;color:var(--gray);margin:0 40px 10px 16px;text-align:right;}
 .quick-replies{display:flex;gap:8px;padding:0 16px 12px;flex-wrap:wrap;}
-.qr-btn{background:var(--white);border:1.5px solid var(--primary);color:var(--primary);border-radius:20px;padding:8px 14px;font-size:13px;cursor:pointer;font-weight:600;white-space:nowrap;transition:all .15s;}
-.qr-btn:hover{background:var(--primary);color:var(--white);}
+.qr-btn{background:var(--white);border:1.5px solid var(--primary);color:var(--primary);border-radius:20px;padding:8px 14px;font-size:13px;cursor:pointer;font-weight:600;white-space:nowrap;}
 .section-title{font-size:17px;font-weight:700;padding:16px 16px 8px;}
 .content-row{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;}
 .content-row::-webkit-scrollbar{display:none;}
@@ -75,8 +74,7 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
 .chat-input-area{padding:10px 16px 12px;background:var(--white);border-top:1px solid var(--border);display:flex;gap:8px;align-items:flex-end;flex-shrink:0;}
 .chat-textarea{flex:1;border:1.5px solid var(--border);border-radius:22px;padding:10px 16px;font-size:14px;font-family:var(--font);resize:none;outline:none;max-height:80px;line-height:1.5;transition:border-color .2s;}
 .chat-textarea:focus{border-color:var(--primary);}
-.send-btn{width:42px;height:42px;background:var(--primary);border:none;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;transition:transform .1s;}
-.send-btn:active{transform:scale(.92);}
+.send-btn{width:42px;height:42px;background:var(--primary);border:none;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;}
 .mic-btn{width:42px;height:42px;background:var(--lgray);border:none;border-radius:50%;cursor:pointer;font-size:18px;}
 .onboard-hero{background:linear-gradient(160deg,var(--primary),#FF8C5A);padding:48px 24px 40px;text-align:center;color:var(--white);}
 .onboard-hero h2{font-size:28px;font-weight:800;margin-bottom:10px;}
@@ -120,22 +118,102 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
 .typing-dots span:nth-child(2){animation-delay:.15s}.typing-dots span:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
 .fab{position:absolute;bottom:72px;right:20px;width:52px;height:52px;background:var(--primary);border:none;border-radius:50%;font-size:22px;color:var(--white);cursor:pointer;box-shadow:0 4px 16px rgba(255,107,53,.4);z-index:10;}
-/* pres */
-#pres-overlay{display:none;position:absolute;inset:0;background:rgba(0,0,0,.28);z-index:100;pointer-events:none;}
-#pres-highlight{position:absolute;border:3px solid #00CFFF;border-radius:18px;pointer-events:none;transition:all .5s ease;opacity:0;box-shadow:0 0 0 5px rgba(0,207,255,.22),0 0 16px rgba(0,207,255,.4);}
-#pres-card{background:var(--white);border-radius:20px;padding:18px 20px;width:88%;max-width:350px;box-shadow:0 8px 32px rgba(0,0,0,.22);position:absolute;left:50%;transform:translateX(-50%);bottom:20px;z-index:102;transition:top .4s,bottom .4s;pointer-events:all;}
+
+/* ── PC 프레젠테이션 ── */
+#pres-overlay{display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0D1B2A,#1A2B3C);z-index:1000;}
+#pres-inner{display:flex;align-items:center;justify-content:center;height:100%;gap:52px;padding:24px 40px;}
+.p-skin-wrap{flex-shrink:0;position:relative;}
+.p-skin{width:270px;height:560px;background:#151525;border-radius:46px;padding:13px 9px;box-shadow:inset 0 0 0 1px #3B3B6B,0 0 0 1px #3B3B6B,0 0 0 9px #151525,0 0 0 11px #3B3B6B,0 28px 70px rgba(0,0,0,.75);position:relative;}
+.p-skin::before{content:'';position:absolute;top:13px;left:50%;transform:translateX(-50%);width:76px;height:20px;background:#151525;border-radius:0 0 12px 12px;z-index:30;}
+.p-skin::after{content:'';position:absolute;top:17px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:#252545;border-radius:50%;z-index:31;box-shadow:0 0 0 2px #0A0A1A;}
+.p-btn-volu{position:absolute;left:-11px;top:88px;width:3px;height:26px;background:#3B3B6B;border-radius:2px 0 0 2px;}
+.p-btn-vold{position:absolute;left:-11px;top:124px;width:3px;height:26px;background:#3B3B6B;border-radius:2px 0 0 2px;}
+.p-btn-pwr{position:absolute;right:-11px;top:108px;width:3px;height:44px;background:#3B3B6B;border-radius:0 2px 2px 0;}
+.p-viewport{width:252px;height:534px;border-radius:34px;overflow:hidden;background:var(--white);position:relative;}
+#p-app-view{width:390px;height:844px;transform:scale(0.6462);transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none;}
+#p-app-live{width:390px;height:844px;transform:scale(0.6462);transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none;display:none;}
+.p-hl{position:absolute;border:2.5px solid #00CFFF;border-radius:10px;pointer-events:none;opacity:0;box-shadow:0 0 0 4px rgba(0,207,255,.2),0 0 14px rgba(0,207,255,.4);transition:all .45s ease;z-index:20;}
+.p-panel{flex:1;max-width:480px;display:flex;flex-direction:column;gap:18px;}
+.p-panel-title{color:var(--white);}
+.p-panel-title h2{font-size:30px;font-weight:800;margin-bottom:6px;}
+.p-panel-title p{font-size:14px;color:rgba(255,255,255,.48);line-height:1.65;}
+.p-card{background:var(--white);border-radius:20px;padding:22px 24px;box-shadow:0 10px 44px rgba(0,0,0,.45);}
+.p-card-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.p-robot{width:38px;height:38px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.p-step-label{font-size:13px;color:var(--primary);font-weight:700;}
+.p-narr-sub{font-size:11px;color:var(--gray);font-weight:500;}
+#p-text{font-size:14px;line-height:1.78;color:var(--dark);min-height:68px;transition:opacity .35s;}
+.p-ctrl{display:flex;align-items:center;gap:8px;margin-top:14px;}
+.p-btn{width:30px;height:30px;border:none;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font);}
+#p-track{flex:1;height:8px;background:var(--lgray);border-radius:8px;overflow:hidden;cursor:pointer;}
+#p-fill{height:100%;background:linear-gradient(90deg,var(--pl),var(--primary));border-radius:8px;width:0%;transition:width .2s linear;pointer-events:none;}
+#p-timer{text-align:right;font-size:11px;color:var(--gray);margin-top:4px;}
+.p-scenarios{background:rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;max-height:240px;overflow-y:auto;}
+.p-scenarios::-webkit-scrollbar{display:none;}
+.p-scen-title{font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.7px;margin-bottom:9px;}
+.p-scen-item{display:flex;align-items:center;gap:8px;padding:5px 7px;border-radius:8px;cursor:pointer;transition:background .15s;}
+.p-scen-item:hover{background:rgba(255,255,255,.08);}
+.p-scen-num{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,.45);flex-shrink:0;transition:all .2s;}
+.p-scen-lbl{font-size:12px;color:rgba(255,255,255,.55);transition:color .2s;}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
+
+<!-- ── PC 프레젠테이션 오버레이 ── -->
+<div id="pres-overlay">
+  <button onclick="closePresentation()" style="position:absolute;top:18px;right:22px;background:rgba(255,255,255,.12);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px;color:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;">✕</button>
+  <div id="pres-inner">
+    <div class="p-skin-wrap">
+      <div class="p-skin">
+        <div class="p-btn-volu"></div>
+        <div class="p-btn-vold"></div>
+        <div class="p-btn-pwr"></div>
+        <div class="p-viewport" id="p-viewport">
+          <div class="p-hl" id="p-hl"></div>
+          <div id="p-app-view"></div>
+          <div id="p-app-live"></div>
+        </div>
+      </div>
+    </div>
+    <div class="p-panel">
+      <div class="p-panel-title">
+        <h2>🎬 미디어 친구</h2>
+        <p>말 한 마디가 데이터가 되고,<br>데이터가 나만의 큐레이션이 됩니다.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-hdr">
+          <div class="p-robot">🤖</div>
+          <div>
+            <div class="p-narr-sub">미디어 친구 프레젠테이션</div>
+            <div class="p-step-label" id="p-step-label"></div>
+          </div>
+        </div>
+        <div id="p-text"></div>
+        <div class="p-ctrl">
+          <button class="p-btn" id="p-play"  onclick="presPlay()"  style="background:var(--primary);color:#fff;">▶</button>
+          <button class="p-btn" id="p-pause" onclick="presPause()" style="background:var(--lgray);color:var(--dark);">⏸</button>
+          <button class="p-btn" id="p-stop"  onclick="presStop()"  style="background:var(--lgray);color:var(--dark);">⏹</button>
+          <div id="p-track" onclick="presSeek(event)"><div id="p-fill"></div></div>
+        </div>
+        <div id="p-timer">0초 / 60초</div>
+      </div>
+      <div class="p-scenarios">
+        <div class="p-scen-title">시나리오</div>
+        <div id="p-scen-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 앱 쉘 ── -->
 <div class="phone-shell" id="app">
 
-  <!-- ONBOARD -->
   <div class="screen active" id="screen-onboard">
     <div class="scroll-area">
       <div class="onboard-hero"><div class="onboard-emoji">🎬</div><h2>미디어 친구</h2><p>당신만의 AI 미디어 큐레이터<br>콘텐츠의 주인이 되어보세요</p></div>
       <div class="onboard-form">
-        <div style="font-size:15px;color:var(--gray);margin-bottom:20px;line-height:1.7;">유튜브, 넷플릭스, OTT — 내가 보는 모든 콘텐츠를 AI 친구에게 알려주고,<br><strong style="color:var(--dark);">알고리즘이 아닌 내가 선택하는 미디어 생활</strong>을 시작하세요.</div>
+        <div style="font-size:15px;color:var(--gray);margin-bottom:20px;line-height:1.7;"><strong style="color:var(--dark);">알고리즘이 아닌 내가 선택하는 미디어 생활</strong>을 시작하세요.</div>
         <div class="social-login">
           <button class="social-btn" onclick="goScreen('home')">🔵 카카오로 시작하기</button>
           <button class="social-btn" onclick="goScreen('home')">🟢 네이버로 시작하기</button>
@@ -146,18 +224,12 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </div>
   </div>
 
-  <!-- QUIZ -->
   <div class="screen" id="screen-quiz">
     <div class="status-bar"><span>9:41</span><span>●●●</span></div>
-    <div class="app-header">
-      <button class="icon-btn" onclick="goScreen('demo')" style="margin-right:4px;">←</button>
-      <h1 style="font-size:17px;">성향 파악</h1>
-      <span style="font-size:13px;color:var(--gray);">퀴즈 중</span>
-    </div>
+    <div class="app-header"><button class="icon-btn" onclick="goScreen('demo')" style="margin-right:4px;">←</button><h1 style="font-size:17px;">성향 파악</h1><span style="font-size:13px;color:var(--gray);">퀴즈 중</span></div>
     <div class="scroll-area"><div class="quiz-container"><div class="prog-bar"><div class="prog-fill" id="quiz-prog" style="width:20%"></div></div><div id="quiz-content"></div></div></div>
   </div>
 
-  <!-- HOME -->
   <div class="screen" id="screen-home">
     <div class="status-bar"><span>9:41</span><span>🔋 ●●●</span></div>
     <div class="app-header">
@@ -165,18 +237,18 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
       <div class="header-actions">
         <span class="points-badge">🔥 1,240P</span>
         <button class="icon-btn">🔔</button>
-        <button class="admin-btn" onclick="showToast('👉 관리자 앱(MediaMate Admin)을 열어주세요')">⚙ 관리자</button>
+        <button class="admin-btn" onclick="showToast('👉 MediaMate Admin을 열어주세요')">⚙ 관리자</button>
       </div>
     </div>
     <div class="scroll-area">
       <div style="padding:14px 16px 4px;"><div style="font-size:22px;font-weight:800;">안녕하세요, 지민님 👋</div><div style="font-size:14px;color:var(--gray);margin-top:4px;">오늘도 좋은 콘텐츠와 함께하세요</div></div>
       <div style="margin-top:14px;">
-        <div class="ai-bubble">어제 〈흑백요리사〉 3화를 보셨군요! 어떠셨나요? 시청 후기를 남겨주시면 더 정확한 추천을 드릴 수 있어요 😊</div>
+        <div class="ai-bubble">어제 〈흑백요리사〉 3화를 보셨군요! 시청 후기를 남겨주시면 더 정확한 추천을 드릴 수 있어요 😊</div>
         <div class="ai-label">미디어 친구 AI · 방금 전</div>
         <div class="quick-replies">
           <button class="qr-btn" onclick="goScreen('thinkaloud')">💬 지금 얘기하기</button>
           <button class="qr-btn" onclick="showToast('기록되었습니다 ✅')">⭐ 별점만</button>
-          <button class="qr-btn" onclick="showToast('다음에 알려드릴게요!')">나중에</button>
+          <button class="qr-btn" onclick="showToast('다음에!')">나중에</button>
         </div>
       </div>
       <div class="stats-grid">
@@ -185,13 +257,13 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
       </div>
       <div class="section-title">🤖 AI 추천 콘텐츠</div>
       <div class="content-row">
-        <div class="content-card" onclick="showToast('추천 이유: 요리+경쟁 포맷 선호')"><div class="content-thumb">🍳</div><div class="content-info"><div class="content-title">흑백요리사 시즌2</div><div class="content-sub">넷플릭스 · 45분</div><span class="content-platform">Netflix</span></div></div>
-        <div class="content-card" onclick="showToast('추천 이유: 감성 여행 선호')"><div class="content-thumb">✈️</div><div class="content-info"><div class="content-title">짠내투어 일본편</div><div class="content-sub">유튜브 · 24분</div><span class="content-platform">YouTube</span></div></div>
-        <div class="content-card" onclick="showToast('추천 이유: 주말 심야 스릴러 선호')"><div class="content-thumb">🎭</div><div class="content-info"><div class="content-title">마스크걸</div><div class="content-sub">넷플릭스 · 55분</div><span class="content-platform">Netflix</span></div></div>
+        <div class="content-card" onclick="showToast('요리+경쟁 포맷 선호')"><div class="content-thumb">🍳</div><div class="content-info"><div class="content-title">흑백요리사 시즌2</div><div class="content-sub">넷플릭스·45분</div><span class="content-platform">Netflix</span></div></div>
+        <div class="content-card" onclick="showToast('감성 여행 선호')"><div class="content-thumb">✈️</div><div class="content-info"><div class="content-title">짠내투어 일본편</div><div class="content-sub">유튜브·24분</div><span class="content-platform">YouTube</span></div></div>
+        <div class="content-card" onclick="showToast('심야 스릴러 선호')"><div class="content-thumb">🎭</div><div class="content-info"><div class="content-title">마스크걸</div><div class="content-sub">넷플릭스·55분</div><span class="content-platform">Netflix</span></div></div>
       </div>
-      <div class="rec-hero"><div class="rec-hero-icon">💡</div><div class="rec-hero-text"><h3>오늘의 AI 인사이트</h3><p>지민님은 <strong>금요일 밤 10시~12시</strong>에 몰아보기를 즐기시는 패턴이 있어요. 오늘 콘텐츠를 미리 골라드릴까요?</p></div></div>
+      <div class="rec-hero"><div class="rec-hero-icon">💡</div><div class="rec-hero-text"><h3>오늘의 AI 인사이트</h3><p>지민님은 <strong>금요일 밤 10시~12시</strong>에 몰아보기를 즐기시는 패턴이 있어요.</p></div></div>
       <div class="section-title">📺 최근 시청 기록</div>
-      <div class="history-item" onclick="goScreen('thinkaloud')"><div class="history-thumb">🍳</div><div class="history-info"><div class="history-title">흑백요리사 E03</div><div class="history-meta">Netflix · 어제 오후 11:20 · 47분</div></div><div class="history-rating">★★★★☆</div></div>
+      <div class="history-item"><div class="history-thumb">🍳</div><div class="history-info"><div class="history-title">흑백요리사 E03</div><div class="history-meta">Netflix · 어제 · 47분</div></div><div class="history-rating">★★★★☆</div></div>
       <div class="history-item"><div class="history-thumb">📰</div><div class="history-info"><div class="history-title">슈카월드 - 경제 뉴스</div><div class="history-meta">YouTube · 2일 전 · 22분</div></div><div class="history-rating">★★★★★</div></div>
       <div style="height:16px;"></div>
     </div>
@@ -205,13 +277,12 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </nav>
   </div>
 
-  <!-- THINK ALOUD -->
   <div class="screen" id="screen-thinkaloud">
     <div class="status-bar"><span>9:41</span><span>🔋 ●●●</span></div>
     <div class="app-header"><button class="icon-btn" onclick="goScreen('home')" style="margin-right:4px;">←</button><h1 style="font-size:17px;">AI 친구와 대화</h1><div class="header-actions"><span class="points-badge">+10P/건</span></div></div>
     <div class="scroll-area" id="chat-scroll">
       <div style="height:12px;"></div>
-      <div class="ai-bubble">안녕하세요! 저는 지민님의 미디어 큐레이터예요 🎬<br>지금 보고 계신 콘텐츠가 있으신가요? 자유롭게 말씀해 주세요!</div>
+      <div class="ai-bubble">안녕하세요! 저는 지민님의 미디어 큐레이터예요 🎬<br>지금 보고 계신 콘텐츠가 있으신가요?</div>
       <div class="ai-label">미디어 친구 AI · 오전 9:41</div>
       <div class="quick-replies">
         <button class="qr-btn" onclick="sendQuick('지금 넷플릭스 보고 있어요')">📺 지금 시청 중</button>
@@ -223,7 +294,7 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </div>
     <div class="chat-input-area">
       <button class="mic-btn" onclick="showToast('🎙 음성 인식 시작...')">🎙</button>
-      <textarea class="chat-textarea" id="chat-input" placeholder="지금 뭐 보고 계세요? 느낌은 어떤가요?" rows="1" oninput="autoResize(this)"></textarea>
+      <textarea class="chat-textarea" id="chat-input" placeholder="지금 뭐 보고 계세요?" rows="1" oninput="autoResize(this)"></textarea>
       <button class="send-btn" onclick="sendChat()">➤</button>
     </div>
     <nav class="bottom-nav">
@@ -235,30 +306,21 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </nav>
   </div>
 
-  <!-- HISTORY -->
   <div class="screen" id="screen-history">
     <div class="status-bar"><span>9:41</span><span>🔋 ●●●</span></div>
-    <div class="app-header"><h1>시청 기록</h1><div class="header-actions"><button class="icon-btn" onclick="showToast('기록 추가')">＋</button></div></div>
+    <div class="app-header"><h1>시청 기록</h1></div>
     <div class="scroll-area">
       <div class="section-title">📤 플랫폼 기록 가져오기</div>
       <div style="display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;">
         <button style="background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;" onclick="showToast('YouTube 업로드')">▶ YouTube</button>
         <button style="background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;" onclick="showToast('Netflix 업로드')">🎬 Netflix</button>
         <button style="background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;" onclick="showToast('Wavve 업로드')">🌊 Wavve</button>
-        <button style="background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;" onclick="showToast('Tving 업로드')">📡 Tving</button>
       </div>
-      <div class="upload-box" onclick="showToast('파일 선택 → +50P 즉시 지급!')"><div class="upload-icon">📂</div><div class="upload-text">시청기록 파일 업로드<br><strong>CSV · JSON · 텍스트</strong> 지원<br>업로드 시 <strong>+50P 즉시 지급!</strong></div></div>
+      <div class="upload-box" onclick="showToast('+50P 적립!')"><div class="upload-icon">📂</div><div class="upload-text">시청기록 파일 업로드<br><strong>CSV · JSON</strong> 지원 · <strong>+50P 즉시 지급!</strong></div></div>
       <div class="section-title">📋 내 시청 기록</div>
-      <div style="display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;">
-        <button class="qr-btn" style="font-size:12px;padding:6px 12px;">전체</button>
-        <button class="qr-btn" style="font-size:12px;padding:6px 12px;">Netflix</button>
-        <button class="qr-btn" style="font-size:12px;padding:6px 12px;">YouTube</button>
-        <button class="qr-btn" style="font-size:12px;padding:6px 12px;">기타</button>
-      </div>
-      <div class="history-item"><div class="history-thumb">🍳</div><div class="history-info"><div class="history-title">흑백요리사 E03</div><div class="history-meta">Netflix · 어제 · 47분 · 후기 ✅</div></div><div class="history-rating">★★★★☆</div></div>
-      <div class="history-item"><div class="history-thumb">📰</div><div class="history-info"><div class="history-title">슈카월드 경제 이슈</div><div class="history-meta">YouTube · 2일 전 · 22분</div></div><div class="history-rating" style="color:var(--border);">미평가</div></div>
-      <div class="history-item"><div class="history-thumb">🧟</div><div class="history-info"><div class="history-title">지금 우리 학교는</div><div class="history-meta">Netflix · 3일 전 · 55분 · 후기 ✅</div></div><div class="history-rating">★★★★★</div></div>
-      <div class="history-item"><div class="history-thumb">🎵</div><div class="history-info"><div class="history-title">유재석 유튜브 - 핵인싸</div><div class="history-meta">YouTube · 5일 전 · 18분</div></div><div class="history-rating" style="color:var(--border);">미평가</div></div>
+      <div class="history-item"><div class="history-thumb">🍳</div><div class="history-info"><div class="history-title">흑백요리사 E03</div><div class="history-meta">Netflix · 어제 · 47분</div></div><div class="history-rating">★★★★☆</div></div>
+      <div class="history-item"><div class="history-thumb">📰</div><div class="history-info"><div class="history-title">슈카월드 경제</div><div class="history-meta">YouTube · 2일 전 · 22분</div></div><div class="history-rating" style="color:var(--border);">미평가</div></div>
+      <div class="history-item"><div class="history-thumb">🧟</div><div class="history-info"><div class="history-title">지금 우리 학교는</div><div class="history-meta">Netflix · 3일 전 · 55분</div></div><div class="history-rating">★★★★★</div></div>
       <div style="height:16px;"></div>
     </div>
     <nav class="bottom-nav">
@@ -270,36 +332,26 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </nav>
   </div>
 
-  <!-- INSIGHT -->
   <div class="screen" id="screen-insight">
     <div class="status-bar"><span>9:41</span><span>🔋 ●●●</span></div>
     <div class="app-header"><h1>인사이트 & 추천</h1></div>
     <div class="scroll-area">
-      <div style="margin:12px 0 4px;"><div class="ai-bubble">지민님의 이번 주 분석 결과예요 📊<br>주말 밤에 집중 시청하는 패턴이 뚜렷해요. 평일에도 짧은 콘텐츠를 섞어보시면 어떨까요?</div><div class="ai-label">미디어 친구 AI · 오늘 오전 9:00</div></div>
-      <div class="section-title">📈 시청 패턴 분석</div>
+      <div style="margin:12px 0 4px;"><div class="ai-bubble">주말 밤에 집중 시청하는 패턴이 뚜렷해요 📊</div><div class="ai-label">미디어 친구 AI</div></div>
+      <div class="section-title">📈 시청 패턴</div>
       <div class="card"><div class="card-title">요일별 시청 시간</div>
-        <div class="chart-row"><div class="chart-day">월</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:20%"></div></div><div class="chart-val">24분</div></div>
-        <div class="chart-row"><div class="chart-day">화</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:15%"></div></div><div class="chart-val">18분</div></div>
-        <div class="chart-row"><div class="chart-day">수</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:30%"></div></div><div class="chart-val">36분</div></div>
-        <div class="chart-row"><div class="chart-day">목</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:25%"></div></div><div class="chart-val">30분</div></div>
         <div class="chart-row"><div class="chart-day">금</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:80%"></div></div><div class="chart-val">96분</div></div>
         <div class="chart-row"><div class="chart-day">토</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:100%"></div></div><div class="chart-val">120분</div></div>
         <div class="chart-row"><div class="chart-day">일</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:70%"></div></div><div class="chart-val">84분</div></div>
+        <div class="chart-row"><div class="chart-day">월</div><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:20%"></div></div><div class="chart-val">24분</div></div>
       </div>
-      <div class="card"><div class="card-title">선호 장르</div><span class="tag active">요리/먹방</span><span class="tag active">경제/시사</span><span class="tag active">스릴러</span><span class="tag">로맨스</span><span class="tag active">여행</span><span class="tag">애니메이션</span><span class="tag active">다큐</span></div>
-      <div class="card"><div class="card-title">플랫폼 비율</div>
-        <div style="margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>Netflix</span><span style="color:var(--primary);font-weight:700;">52%</span></div><div class="prog-bar"><div class="prog-fill" style="width:52%"></div></div></div>
-        <div style="margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>YouTube</span><span style="color:var(--primary);font-weight:700;">35%</span></div><div class="prog-bar"><div class="prog-fill" style="width:35%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span>기타 OTT</span><span style="color:var(--primary);font-weight:700;">13%</span></div><div class="prog-bar"><div class="prog-fill" style="width:13%"></div></div></div>
-      </div>
+      <div class="rec-hero"><div class="rec-hero-icon">💡</div><div class="rec-hero-text"><h3>오늘의 인사이트</h3><p>금요일 밤 10~12시 집중 시청 패턴. 오늘 볼 콘텐츠를 미리 골라드릴까요?</p></div></div>
       <div class="section-title">🎯 맞춤 추천</div>
       <div class="content-row">
-        <div class="content-card" onclick="showToast('📌 추천 이유 보기')"><div class="content-thumb">🌏</div><div class="content-info"><div class="content-title">블루플래닛</div><div class="content-sub">넷플릭스 · 50분</div><span class="content-platform">Netflix</span></div></div>
-        <div class="content-card" onclick="showToast('📌 추천 이유 보기')"><div class="content-thumb">💰</div><div class="content-info"><div class="content-title">부동산 읽어주는 남자</div><div class="content-sub">YouTube · 30분</div><span class="content-platform">YouTube</span></div></div>
-        <div class="content-card" onclick="showToast('📌 추천 이유 보기')"><div class="content-thumb">🎪</div><div class="content-info"><div class="content-title">더 글로리</div><div class="content-sub">넷플릭스 · 62분</div><span class="content-platform">Netflix</span></div></div>
+        <div class="content-card"><div class="content-thumb">🌏</div><div class="content-info"><div class="content-title">블루플래닛</div><span class="content-platform">Netflix</span></div></div>
+        <div class="content-card"><div class="content-thumb">💰</div><div class="content-info"><div class="content-title">부동산 읽어주는 남자</div><span class="content-platform">YouTube</span></div></div>
       </div>
       <div class="section-title">🏆 보상 & 뱃지</div>
-      <div class="points-hero"><div class="points-big">1,240</div><div style="font-size:14px;opacity:.85;margin-top:4px;">현재 포인트 · 다음 등급까지 260P</div><div style="margin-top:12px;background:rgba(255,255,255,.2);border-radius:10px;height:8px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--white);border-radius:10px;"></div></div></div>
+      <div class="points-hero"><div class="points-big">1,240</div><div style="font-size:14px;opacity:.85;margin-top:4px;">현재 포인트</div></div>
       <div class="badge-grid">
         <div class="badge-item"><div class="badge-icon">🎬</div><div class="badge-name">첫 기록</div></div>
         <div class="badge-item"><div class="badge-icon">🔥</div><div class="badge-name">7일 연속</div></div>
@@ -319,20 +371,20 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </nav>
   </div>
 
-  <!-- DEMO -->
   <div class="screen" id="screen-demo">
     <div class="status-bar"><span>9:41</span><span>🔋 ●●●</span></div>
     <div class="app-header"><h1>데모 투어 🎮</h1></div>
     <div class="scroll-area">
       <div class="demo-card"><div style="font-size:18px;font-weight:800;margin-bottom:6px;">미디어 친구를 경험해보세요</div><div style="font-size:13px;opacity:.9;line-height:1.6;">더미 데이터 기반으로 각 기능을 직접 체험해보세요.</div></div>
-      <div style="padding:12px 16px 4px;"><button onclick="startPresentation()" style="width:100%;padding:18px;background:linear-gradient(135deg,var(--primary),#FF8C5A);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(255,107,53,.35);">▶ 프레젠테이션 시연 (1분)</button></div>
+      <div style="padding:12px 16px 4px;">
+        <button onclick="startPresentation()" style="width:100%;padding:18px;background:linear-gradient(135deg,var(--primary),#FF8C5A);color:var(--white);border:none;border-radius:16px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(255,107,53,.35);">▶ 프레젠테이션 시연 (1분)</button>
+      </div>
       <div class="section-title">체험 시나리오</div>
       <div class="demo-list">
-        <div class="demo-item" onclick="runDemo('quiz')"><div class="demo-item-icon">📝</div><div class="demo-item-info"><div class="demo-item-title">① 성향 퀴즈 체험</div><div class="demo-item-desc">AI가 나의 미디어 성향을 파악하는 첫 과정</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
-        <div class="demo-item" onclick="runDemo('thinkaloud')"><div class="demo-item-icon">💬</div><div class="demo-item-info"><div class="demo-item-title">② Think Aloud 대화</div><div class="demo-item-desc">AI 친구에게 콘텐츠 실시간 전달</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
-        <div class="demo-item" onclick="runDemo('upload')"><div class="demo-item-icon">📤</div><div class="demo-item-info"><div class="demo-item-title">③ 시청기록 업로드</div><div class="demo-item-desc">넷플릭스·유튜브 기록 AI 분석</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
-        <div class="demo-item" onclick="runDemo('insight')"><div class="demo-item-icon">📊</div><div class="demo-item-info"><div class="demo-item-title">④ AI 인사이트 & 추천</div><div class="demo-item-desc">패턴 분석 결과와 맞춤 추천</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
-        <div class="demo-item" onclick="runDemo('reward')"><div class="demo-item-icon">🏆</div><div class="demo-item-info"><div class="demo-item-title">⑤ 포인트·보상 시스템</div><div class="demo-item-desc">참여할수록 쌓이는 포인트와 뱃지</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
+        <div class="demo-item" onclick="goToQuiz()"><div class="demo-item-icon">📝</div><div class="demo-item-info"><div class="demo-item-title">① 성향 퀴즈</div><div class="demo-item-desc">AI가 나의 미디어 성향을 파악하는 첫 과정</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
+        <div class="demo-item" onclick="goScreen('thinkaloud')"><div class="demo-item-icon">💬</div><div class="demo-item-info"><div class="demo-item-title">② Think Aloud 대화</div><div class="demo-item-desc">AI 친구에게 콘텐츠 실시간 전달</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
+        <div class="demo-item" onclick="goScreen('history')"><div class="demo-item-icon">📤</div><div class="demo-item-info"><div class="demo-item-title">③ 시청기록 업로드</div><div class="demo-item-desc">넷플릭스·유튜브 기록 AI 분석</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
+        <div class="demo-item" onclick="goScreen('insight')"><div class="demo-item-icon">📊</div><div class="demo-item-info"><div class="demo-item-title">④ AI 인사이트 & 추천</div><div class="demo-item-desc">패턴 분석 결과와 맞춤 추천</div></div><span style="color:var(--gray);font-size:16px;">›</span></div>
       </div>
       <div class="card" style="background:var(--pp);box-shadow:none;"><div style="font-size:14px;color:var(--dark);line-height:1.7;"><strong>💡 이런 차이가 있어요</strong><br>유튜브·넷플릭스 알고리즘은 <em>그들을 위해</em> 작동해요.<br>미디어 친구는 <strong>오직 나를 위해</strong> 작동합니다.</div></div>
       <div style="height:16px;"></div>
@@ -346,24 +398,8 @@ body{font-family:var(--font);background:#F0F2F5;color:var(--dark);overflow:hidde
     </nav>
   </div>
 
-  <!-- PRES OVERLAY -->
-  <div id="pres-overlay">
-    <div id="pres-highlight"></div>
-    <div id="pres-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:34px;height:34px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤖</div>
-        <div><div style="font-size:11px;color:var(--gray);font-weight:600;">미디어 친구 프레젠테이션</div><div id="pres-step-label" style="font-size:12px;color:var(--primary);font-weight:700;"></div></div>
-        <button onclick="closePresentation()" style="margin-left:auto;background:var(--lgray);border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:13px;color:var(--gray);">✕</button>
-      </div>
-      <div id="pres-text" style="font-size:14px;line-height:1.7;color:var(--dark);min-height:60px;transition:opacity .4s;"></div>
-      <div id="pres-prog-track" onclick="seekPresentation(event)" style="margin-top:12px;height:10px;background:var(--lgray);border-radius:10px;overflow:hidden;cursor:pointer;">
-        <div id="pres-prog" style="height:100%;background:linear-gradient(90deg,var(--pl),var(--primary));border-radius:10px;width:0%;transition:width .2s linear;pointer-events:none;"></div>
-      </div>
-      <div id="pres-timer" style="text-align:right;font-size:11px;color:var(--gray);margin-top:4px;"></div>
-    </div>
-  </div>
-
 </div><!-- /app -->
+
 <script>
 function goScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+id).classList.add('active');}
 function goToQuiz(){goScreen('quiz');loadQuiz(0);}
@@ -379,9 +415,9 @@ const quizData=[
 let qIdx=0,selOpt=-1;
 function loadQuiz(i){qIdx=i;selOpt=-1;document.getElementById('quiz-prog').style.width=((i+1)/quizData.length*100)+'%';const q=quizData[i];document.getElementById('quiz-content').innerHTML=`<div class="quiz-q">Q${i+1}. ${q.q}</div><div class="quiz-options">${q.opts.map((o,j)=>`<button class="quiz-opt" onclick="selQ(this,${j})">${o}</button>`).join('')}</div><button class="quiz-next" onclick="nextQ()">다음 →</button>`;}
 function selQ(el,i){document.querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');selOpt=i;}
-function nextQ(){if(selOpt<0){showToast('항목을 선택해 주세요');return;}if(qIdx<quizData.length-1){loadQuiz(qIdx+1);return;}document.getElementById('quiz-content').innerHTML=`<div style="text-align:center;padding:40px 0;"><div style="font-size:56px;margin-bottom:16px;">🎉</div><div style="font-size:20px;font-weight:800;margin-bottom:10px;">성향 파악 완료!</div><div style="font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:28px;">AI 친구가 미디어 성향을 분석하고 있어요!</div><button class="quiz-next" onclick="goScreen('home')" style="margin-top:0;">미디어 친구 시작하기 →</button><div style="margin-top:12px;font-size:13px;color:var(--primary);font-weight:700;">🎁 퀴즈 완료 보너스 +100P 지급!</div></div>`;}
+function nextQ(){if(selOpt<0){showToast('항목을 선택해 주세요');return;}if(qIdx<quizData.length-1){loadQuiz(qIdx+1);return;}document.getElementById('quiz-content').innerHTML=`<div style="text-align:center;padding:40px 0;"><div style="font-size:56px;margin-bottom:16px;">🎉</div><div style="font-size:20px;font-weight:800;margin-bottom:10px;">성향 파악 완료!</div><button class="quiz-next" onclick="goScreen('home')" style="margin-top:20px;">미디어 친구 시작하기 →</button><div style="margin-top:12px;font-size:13px;color:var(--primary);font-weight:700;">🎁 퀴즈 완료 +100P!</div></div>`;}
 
-const aiResps=['좋은 정보 감사해요! 기록했어요 📝<br>재미있으셨나요? 별점을 남겨주세요!','오! 그렇군요 😊 선호 장르와 잘 맞아요.<br>비슷한 콘텐츠를 찾아드릴까요?','기록 완료 ✅<br>〈더 글로리〉도 좋아하실 것 같아요!','취향 데이터가 더 정교해지고 있어요 🧠','오늘 대화로 <strong>+30P</strong> 적립! 🔥'];
+const aiResps=['좋은 정보 감사해요! 기록했어요 📝<br>재미있으셨나요?','선호 장르와 잘 맞아요 😊<br>비슷한 콘텐츠 찾아드릴까요?','기록 완료 ✅<br>〈더 글로리〉도 추천해요!','취향 데이터가 정교해지고 있어요 🧠','오늘 대화로 <strong>+30P</strong> 적립! 🔥'];
 let aiIdx=0;
 function sendQuick(t){addUM(t);showTyping();setTimeout(()=>{rmTyping();addAM(aiResps[aiIdx++%aiResps.length]);addQR();},1200);}
 function sendChat(){const inp=document.getElementById('chat-input');const t=inp.value.trim();if(!t)return;inp.value='';inp.style.height='';addUM(t);showTyping();setTimeout(()=>{rmTyping();addAM(aiResps[aiIdx++%aiResps.length]);addQR();},1400);}
@@ -392,30 +428,165 @@ function showTyping(){const d=document.createElement('div');d.id='typing-indicat
 function rmTyping(){const e=document.getElementById('typing-indicator');if(e)e.remove();}
 function scrollC(){const s=document.getElementById('chat-scroll');setTimeout(()=>s.scrollTop=s.scrollHeight,50);}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,80)+'px';}
-function runDemo(type){const m={quiz:'📝 성향 퀴즈 시작!',thinkaloud:'💬 AI 대화 시작!',upload:'📤 기록 업로드 화면!',insight:'📊 인사이트 화면!',reward:'🏆 보상 시스템!'};showToast(m[type]||'데모 시작!');setTimeout(()=>{if(type==='quiz')goToQuiz();else if(type==='thinkaloud')goScreen('thinkaloud');else if(type==='upload')goScreen('history');else goScreen('insight');},600);}
 
 const PRES_TOTAL=66;
 const presSteps=[
-  {t:0,s:'onboard',l:'① 앱 소개',txt:'안녕하세요! 👋 <b>미디어 친구</b>는 유튜브·넷플릭스 알고리즘이 아닌, <b>내가 직접 미디어를 선택하고 관리</b>하는 AI 큐레이터 앱입니다.',hl:null},
-  {t:5,s:'onboard',l:'① 앱 소개',txt:'소셜 로그인 한 번으로 시작할 수 있어요. 카카오·네이버·Google 모두 지원합니다. 가입 시간은 단 <b>10초</b>!',hl:'.social-login'},
-  {t:10,s:'quiz',l:'② 성향 파악 퀴즈',txt:'짧은 <b>성향 퀴즈</b>로 AI가 취향을 파악해요. 완료하면 <b>+100P</b> 즉시 지급! 🎁',hl:'.quiz-options',fn:()=>loadQuiz(0)},
-  {t:17,s:'home',l:'③ 홈 — AI가 먼저 말을 걸어요',txt:'홈에 오면 <b>AI 친구가 먼저 말을 걸어요.</b> 내 편 AI의 대화입니다.',hl:'.ai-bubble'},
-  {t:24,s:'thinkaloud',l:'④ Think Aloud — 말하듯 기록',txt:'"나 지금 넷플릭스에서 흑백요리사 보고 있어" — 이 한 마디에서 AI가 시각·플랫폼·장르를 모두 파악해요! 🎙',hl:'.chat-input-area',
-    fn:()=>{document.getElementById('chat-messages').innerHTML='';setTimeout(()=>{addUM('나 지금 넷플릭스에서 흑백요리사 보고 있어');showTyping();setTimeout(()=>{rmTyping();addAM('📌 <b>기록 완료!</b><br>• 🕐 오전 9:41 · 📺 Netflix<br>• 🎬 흑백요리사 · 요리·리얼리티');},1200);},600);}},
-  {t:33,s:'thinkaloud',l:'④ Think Aloud — 맥락 수집',txt:'"먹는 걸 좋아해서" → AI가 관심사를 <b>음식·먹방 문화</b>로 자동 보정!',hl:'.chat-input-area',
-    fn:()=>{setTimeout(()=>{addUM('평소에 잘 보는 프로그램, 먹는 걸 좋아해서');showTyping();setTimeout(()=>{rmTyping();addAM('💡 관심사 보정: <b>음식·먹방 문화</b> ✓<br>반복 시청 콘텐츠로 등록!');},1300);},500);}},
-  {t:42,s:'thinkaloud',l:'④ Think Aloud — 종료 자동 계산',txt:'"지금 다 봤어" → 총 <b>47분 자동 기록</b> + <b>+20P 즉시 적립!</b>',hl:'.chat-input-area',
-    fn:()=>{setTimeout(()=>{addUM('지금 다 봤어');showTyping();setTimeout(()=>{rmTyping();addAM('✅ 시청 완료! 총 <b>47분</b> · <b>+20P</b> 적립!');},1400);},500);}},
-  {t:51,s:'history',l:'⑤ 시청기록 업로드',txt:'플랫폼 시청기록 파일 업로드 → AI 일괄 분석. <b>+50P</b> 즉시 적립! 📤',hl:'.upload-box'},
-  {t:57,s:'insight',l:'⑥ AI 인사이트 & 추천',txt:'나도 몰랐던 <b>시청 습관</b>을 분석하고 진짜 내 취향 기반 추천을 드려요. 🎯',hl:'.rec-hero'},
-  {t:63,s:'demo',l:'✅ 마무리',txt:'이것이 <b>미디어 친구</b>입니다. 말 한 마디가 데이터가 되고, 데이터가 나만의 큐레이션이 됩니다! 🎬',hl:null},
+  {t:0,  s:'onboard',    l:'① 앱 소개',                   hl:null,
+   txt:'안녕하세요! 👋 <b>미디어 친구</b>는 유튜브·넷플릭스 알고리즘이 아닌, <b>내가 직접 미디어를 선택하고 관리</b>하는 AI 큐레이터 앱입니다.'},
+  {t:6,  s:'onboard',    l:'① 소셜 로그인',               hl:'.social-login',
+   txt:'소셜 로그인 한 번으로 시작할 수 있어요. 카카오·네이버·Google 모두 지원합니다. 가입 시간은 단 <b>10초</b>!'},
+  {t:12, s:'quiz',       l:'② 성향 파악 퀴즈',            hl:'.quiz-options',
+   txt:'짧은 <b>성향 퀴즈</b>로 AI가 취향을 파악해요. 완료하면 <b>+100P</b> 즉시 지급! 🎁'},
+  {t:18, s:'home',       l:'③ 홈 — AI가 먼저 말을 걸어요', hl:'.ai-bubble',
+   txt:'홈에 오면 <b>AI 친구가 먼저 말을 걸어요.</b> 내 편 AI의 대화입니다.'},
+  {t:24, s:'thinkaloud', l:'④ Think Aloud — 말하듯 기록', hl:'.chat-input-area',
+   txt:'"나 지금 넷플릭스에서 흑백요리사 보고 있어" — 이 한 마디에서 AI가 시각·플랫폼·장르를 모두 파악해요! 🎙',
+   fn:()=>{document.getElementById('chat-messages').innerHTML='';setTimeout(()=>{addUM('나 지금 넷플릭스에서 흑백요리사 보고 있어');showTyping();setTimeout(()=>{rmTyping();addAM('📌 <b>기록 완료!</b><br>• 🕐 오전 9:41 · 📺 Netflix<br>• 🎬 흑백요리사 · 요리·리얼리티');},1200);},300);}},
+  {t:33, s:'thinkaloud', l:'④ Think Aloud — 맥락 수집',  hl:'.chat-input-area',
+   txt:'"먹는 걸 좋아해서" → AI가 관심사를 <b>음식·먹방 문화</b>로 자동 보정!',
+   fn:()=>{setTimeout(()=>{addUM('평소에 잘 보는 프로그램, 먹는 걸 좋아해서');showTyping();setTimeout(()=>{rmTyping();addAM('💡 관심사 보정: <b>음식·먹방 문화</b> ✓<br>반복 시청 콘텐츠로 등록!');},1300);},300);}},
+  {t:42, s:'thinkaloud', l:'④ Think Aloud — 종료 계산',  hl:'.chat-input-area',
+   txt:'"지금 다 봤어" → 총 <b>47분 자동 기록</b> + <b>+20P 즉시 적립!</b>',
+   fn:()=>{setTimeout(()=>{addUM('지금 다 봤어');showTyping();setTimeout(()=>{rmTyping();addAM('✅ 시청 완료! 총 <b>47분</b> · <b>+20P</b> 적립!');},1400);},300);}},
+  {t:50, s:'history',    l:'⑤ 시청기록 업로드',           hl:'.upload-box',
+   txt:'플랫폼 시청기록 파일 업로드 → AI 일괄 분석. <b>+50P</b> 즉시 적립! 📤'},
+  {t:57, s:'insight',    l:'⑥ AI 인사이트 & 추천',        hl:'.rec-hero',
+   txt:'나도 몰랐던 <b>시청 습관</b>을 분석하고 진짜 내 취향 기반 추천을 드려요. 🎯'},
+  {t:63, s:'demo',       l:'✅ 마무리',                   hl:null,
+   txt:'이것이 <b>미디어 친구</b>입니다. 말 한 마디가 데이터가 되고, 데이터가 나만의 큐레이션이 됩니다! 🎬'},
 ];
-let pTimer=null,pElapsed=0,pRunning=false;
-function startPresentation(){pRunning=true;pElapsed=0;document.getElementById('pres-overlay').style.display='block';document.getElementById('pres-prog').style.width='0%';runPS(0);pTimer=setInterval(()=>{if(!pRunning)return;pElapsed++;document.getElementById('pres-prog').style.width=Math.min((pElapsed/PRES_TOTAL)*100,100)+'%';document.getElementById('pres-timer').textContent=`${pElapsed}초 / 60초`;const n=presSteps.findIndex(s=>s.t===pElapsed);if(n!==-1)runPS(n);if(pElapsed>=PRES_TOTAL+1){clearInterval(pTimer);pRunning=false;}},1000);}
-function runPS(idx){const s=presSteps[idx];if(!s)return;goScreen(s.s);document.getElementById('pres-step-label').textContent=s.l;const el=document.getElementById('pres-text');el.style.opacity=0;setTimeout(()=>{el.innerHTML=s.txt;el.style.opacity=1;},150);setTimeout(()=>applyHL(s.s,s.hl),400);if(s.fn)setTimeout(s.fn,600);}
-function applyHL(sid,sel){const hl=document.getElementById('pres-highlight');const card=document.getElementById('pres-card');const shell=document.getElementById('app');const sH=shell.getBoundingClientRect().height;if(!sel){hl.style.opacity=0;card.style.bottom='20px';card.style.top='auto';return;}const t=document.getElementById('screen-'+sid)?.querySelector(sel);if(!t){hl.style.opacity=0;return;}const sr=shell.getBoundingClientRect(),tr=t.getBoundingClientRect();hl.style.opacity=1;hl.style.top=(tr.top-sr.top-4)+'px';hl.style.left=(tr.left-sr.left-4)+'px';hl.style.width=(tr.width+8)+'px';hl.style.height=(tr.height+8)+'px';if(tr.bottom-sr.top>sH*0.55){card.style.bottom='auto';card.style.top='16px';}else{card.style.top='auto';card.style.bottom='20px';}}
-function closePresentation(){pRunning=false;clearInterval(pTimer);document.getElementById('pres-overlay').style.display='none';document.getElementById('pres-highlight').style.opacity=0;goScreen('demo');}
-function seekPresentation(e){const track=document.getElementById('pres-prog-track');const r=Math.min(Math.max(e.offsetX/track.offsetWidth,0),1);pElapsed=Math.floor(r*PRES_TOTAL);document.getElementById('pres-prog').style.width=(r*100)+'%';document.getElementById('pres-timer').textContent=`${pElapsed}초 / 60초`;let si=0;for(let i=0;i<presSteps.length;i++)if(presSteps[i].t<=pElapsed)si=i;runPS(si);}
+
+const LIVE_STEPS=new Set([4,5,6]);
+let pTimer=null, pElapsed=0, pRunning=false, pPaused=false;
+
+function setLiveMode(on){
+  const lw=document.getElementById('p-app-live');
+  const cw=document.getElementById('p-app-view');
+  const app=document.getElementById('app');
+  if(on){
+    if(!lw.contains(app)){app.style.cssText='width:390px;height:844px;max-height:844px;border-radius:0;box-shadow:none;';lw.appendChild(app);}
+    lw.style.display='block';cw.style.display='none';
+  } else {
+    if(lw.contains(app)){app.style.cssText='width:390px;height:100vh;max-height:844px;';document.body.appendChild(app);}
+    lw.style.display='none';cw.style.display='block';
+  }
+}
+
+function renderPView(sid){
+  const src=document.getElementById('screen-'+sid);if(!src)return;
+  // quiz 화면은 클론 전에 내용을 미리 채워둠
+  if(sid==='quiz'){
+    const qc=src.querySelector('#quiz-content');
+    const qp=src.querySelector('#quiz-prog');
+    if(qc&&(!qc.innerHTML||qc.innerHTML.trim()==='')){ 
+      if(qp)qp.style.width='20%';
+      const q=quizData[0];
+      qc.innerHTML=`<div class="quiz-q">Q1. ${q.q}</div><div class="quiz-options">${q.opts.map((o,j)=>`<button class="quiz-opt">${o}</button>`).join('')}</div><button class="quiz-next">다음 →</button>`;
+    }
+  }
+  const view=document.getElementById('p-app-view');view.innerHTML='';
+  const clone=src.cloneNode(true);
+  clone.style.cssText='display:flex;flex-direction:column;width:390px;height:844px;overflow:hidden;animation:none;';
+  clone.classList.add('active');
+  clone.querySelectorAll('button,textarea,a').forEach(el=>el.style.pointerEvents='none');
+  view.appendChild(clone);
+}
+
+function applyPHL(sid,sel){
+  const hl=document.getElementById('p-hl');
+  const vp=document.getElementById('p-viewport');
+  if(!sel){hl.style.opacity=0;return;}
+  const isLive=document.getElementById('p-app-live').style.display!=='none';
+  const target=isLive
+    ?document.getElementById('screen-'+sid)?.querySelector(sel)
+    :document.getElementById('p-app-view')?.querySelector(sel);
+  if(!target){hl.style.opacity=0;return;}
+  const vr=vp.getBoundingClientRect(),tr=target.getBoundingClientRect();
+  hl.style.opacity=1;
+  hl.style.top=(tr.top-vr.top-2)+'px';hl.style.left=(tr.left-vr.left-2)+'px';
+  hl.style.width=(tr.width+4)+'px';hl.style.height=(tr.height+4)+'px';
+}
+
+function startPresentation(){
+  document.getElementById('pres-overlay').style.display='block';
+  const list=document.getElementById('p-scen-list');
+  if(!list.children.length){
+    presSteps.forEach((s,i)=>{
+      const d=document.createElement('div');d.id='ps-'+i;d.className='p-scen-item';
+      d.onclick=()=>{pElapsed=s.t;runPStep(i);if(!pRunning){pRunning=true;pPaused=false;clearInterval(pTimer);pTimer=setInterval(pTick,1000);updPCtrl();}};
+      d.innerHTML=`<div class="p-scen-num" id="psn-${i}">${i+1}</div><span class="p-scen-lbl" id="psl-${i}">${s.l}</span>`;
+      list.appendChild(d);
+    });
+  }
+  presPlay();
+}
+
+function presPlay(){
+  if(!pRunning){pRunning=true;pPaused=false;pElapsed=0;document.getElementById('p-fill').style.width='0%';document.getElementById('p-timer').textContent='0초 / 60초';runPStep(0);clearInterval(pTimer);pTimer=setInterval(pTick,1000);}
+  else if(pPaused){pPaused=false;}
+  updPCtrl();
+}
+function presPause(){if(!pRunning)return;pPaused=!pPaused;updPCtrl();}
+function presStop(){
+  pRunning=false;pPaused=false;clearInterval(pTimer);pElapsed=0;
+  setLiveMode(false);
+  document.getElementById('p-fill').style.width='0%';
+  document.getElementById('p-timer').textContent='0초 / 60초';
+  document.getElementById('p-hl').style.opacity=0;
+  document.getElementById('p-text').innerHTML='';
+  document.getElementById('p-step-label').textContent='';
+  document.getElementById('p-app-view').innerHTML='';
+  updPCtrl();hlStep(-1);
+}
+function closePresentation(){presStop();document.getElementById('pres-overlay').style.display='none';}
+
+function pTick(){
+  if(!pRunning||pPaused)return;
+  pElapsed++;
+  document.getElementById('p-fill').style.width=Math.min((pElapsed/PRES_TOTAL)*100,100)+'%';
+  document.getElementById('p-timer').textContent=`${pElapsed}초 / 60초`;
+  const n=presSteps.findIndex(s=>s.t===pElapsed);
+  if(n!==-1)runPStep(n);
+  if(pElapsed>=PRES_TOTAL){clearInterval(pTimer);pRunning=false;updPCtrl();}
+}
+
+function runPStep(idx){
+  const s=presSteps[idx];if(!s)return;
+  if(LIVE_STEPS.has(idx)){goScreen(s.s);setLiveMode(true);if(s.fn)setTimeout(s.fn,400);}
+  else{setLiveMode(false);renderPView(s.s);}
+  document.getElementById('p-step-label').textContent=s.l;
+  const el=document.getElementById('p-text');el.style.opacity=0;
+  setTimeout(()=>{el.innerHTML=s.txt;el.style.opacity=1;},150);
+  setTimeout(()=>applyPHL(s.s,s.hl),450);
+  hlStep(idx);
+}
+
+function presSeek(e){
+  const track=document.getElementById('p-track');
+  const r=Math.min(Math.max(e.offsetX/track.offsetWidth,0),1);
+  pElapsed=Math.floor(r*PRES_TOTAL);
+  document.getElementById('p-fill').style.width=(r*100)+'%';
+  document.getElementById('p-timer').textContent=`${pElapsed}초 / 60초`;
+  let si=0;for(let i=0;i<presSteps.length;i++)if(presSteps[i].t<=pElapsed)si=i;
+  runPStep(si);
+  if(!pRunning){pRunning=true;pPaused=false;clearInterval(pTimer);pTimer=setInterval(pTick,1000);}
+  updPCtrl();
+}
+
+function updPCtrl(){
+  const pp=document.getElementById('p-play'),pa=document.getElementById('p-pause');if(!pp)return;
+  pp.style.background=(!pRunning||pPaused)?'var(--primary)':'var(--lgray)';pp.style.color=(!pRunning||pPaused)?'#fff':'var(--dark)';
+  pa.style.background=(pRunning&&!pPaused)?'var(--primary)':'var(--lgray)';pa.style.color=(pRunning&&!pPaused)?'#fff':'var(--dark)';
+}
+
+function hlStep(idx){
+  presSteps.forEach((_,i)=>{
+    const n=document.getElementById('psn-'+i),l=document.getElementById('psl-'+i);if(!n)return;
+    n.style.background=i===idx?'var(--primary)':'rgba(255,255,255,.1)';
+    n.style.color=i===idx?'#fff':'rgba(255,255,255,.45)';
+    if(l)l.style.color=i===idx?'#fff':'rgba(255,255,255,.55)';
+  });
+}
 </script>
 </body>
 </html>
