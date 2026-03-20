@@ -522,8 +522,15 @@ function startPresentation(){
 }
 
 function presPlay(){
-  if(!pRunning){pRunning=true;pPaused=false;pElapsed=0;document.getElementById('p-fill').style.width='0%';document.getElementById('p-timer').textContent='0초 / 60초';runPStep(0);clearInterval(pTimer);pTimer=setInterval(pTick,1000);}
-  else if(pPaused){pPaused=false;}
+  if(!pRunning){
+    pRunning=true;pPaused=false;pElapsed=0;
+    document.getElementById('p-fill').style.width='0%';
+    document.getElementById('p-timer').textContent='0초 / 60초';
+    const container=document.querySelector('.p-scenarios');
+    if(container)container.scrollTop=0;
+    runPStep(0);
+    clearInterval(pTimer);pTimer=setInterval(pTick,1000);
+  } else if(pPaused){pPaused=false;}
   updPCtrl();
 }
 function presPause(){if(!pRunning)return;pPaused=!pPaused;updPCtrl();}
@@ -569,6 +576,8 @@ function presSeek(e){
   document.getElementById('p-timer').textContent=`${pElapsed}초 / 60초`;
   let si=0;for(let i=0;i<presSteps.length;i++)if(presSteps[i].t<=pElapsed)si=i;
   runPStep(si);
+  // seek 후 DOM 렌더링이 끝난 뒤 스크롤 강제 실행
+  setTimeout(()=>hlStep(si),80);
   if(!pRunning){pRunning=true;pPaused=false;clearInterval(pTimer);pTimer=setInterval(pTick,1000);}
   updPCtrl();
 }
@@ -586,6 +595,14 @@ function hlStep(idx){
     n.style.color=i===idx?'#fff':'rgba(255,255,255,.45)';
     if(l)l.style.color=i===idx?'#fff':'rgba(255,255,255,.55)';
   });
+  const container=document.querySelector('.p-scenarios');
+  if(!container)return;
+  // 1~7번(idx 0~6): 맨 위, 8~10번(idx 7~9): 맨 아래
+  if(idx<=6){
+    container.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    container.scrollTo({top:container.scrollHeight,behavior:'smooth'});
+  }
 }
 </script>
 </body>
